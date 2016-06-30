@@ -1,0 +1,267 @@
+
+
+
+// Grid % 
+.one-half, .one-third, .two-third, .one-fourth, .three-fourth, .full-width {float: left; margin-right: 3%;}
+.one-half.last, .one-third.last, .two-third.last, .one-fourth.last, .three-fourth.last {margin-right: 0;}
+.one-half {width: 48.5%;}
+.one-third {width: 31%;}
+.two-third {width: 65%;}
+.one-fourth {width: 22.5%;}
+.three-fourth {width: 73.5%;}
+
+
+// CSS Animations 
+@-webkit-keyframes fade {
+  from   { opacity: 0.0; }
+      to { opacity: 1.0; }
+}
+@-moz-keyframes fade {
+  from   { opacity: 0.0; }
+      to { opacity: 1.0; }
+}
+@-ms-keyframes fade {
+  from   { opacity: 0.0; }
+      to { opacity: 1.0; }
+}
+@-o-keyframes fade {
+  from   { opacity: 0.0; }
+      to { opacity: 1.0; }
+}
+
+
+// TABS CSS
+#tabs_wrapper {
+    width: 422px;
+}
+#tabs_container {
+    border-bottom: 1px solid #ccc;
+}
+#tabs {
+    list-style: none;
+    padding: 5px 0 4px 0;
+    margin: 0 0 0 10px;
+    font: 0.75em arial;
+}
+#tabs li {
+    display: inline;
+}
+#tabs li a {
+    border: 1px solid #ccc;
+    padding: 4px 6px;
+    text-decoration: none;
+    background-color: #eeeeee;
+    border-bottom: none;
+    outline: none;
+    border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+}
+#tabs li a:hover {
+    background-color: #dddddd;
+    padding: 4px 6px;
+}
+#tabs li.active a {
+    border-bottom: 1px solid #fff;
+    background-color: #fff;
+    padding: 4px 6px 5px 6px;
+    border-bottom: none;
+}
+#tabs li.active a:hover {
+    background-color: #eeeeee;
+    padding: 4px 6px 5px 6px;
+    border-bottom: none;
+}
+ 
+#tabs li a.icon_accept {
+    background-image: url(accept.png);
+    background-position: 5px;
+    background-repeat: no-repeat;
+    padding-left: 24px;
+}
+#tabs li a.icon_accept:hover {
+    padding-left: 24px;
+}
+ 
+#tabs_content_container {
+    border: 1px solid #ccc;
+    border-top: none;
+    padding: 10px;
+    width: 400px;
+}
+.tab_content {
+    display: none;
+}
+//END TABS CSS
+
+
+//ACCORDION CSS
+.accordion {
+    float: left; 
+    width: 280px; 
+    margin: 0; 
+    padding: 0; 
+    list-style: none; 
+    width: 100%;
+    a {
+        border:0
+    }
+    > a {
+        position: relative; 
+    }
+    li {
+        padding: 0; 
+        position: relative; 
+        .ie7 & {
+             position: static; 
+        }
+        a {
+            display: block;  
+            padding: 20px 72px; 
+            background-color: white; 
+            border-bottom: 0;
+            text-decoration: none; 
+            color:#414B56;
+            &:hover,
+            &.active {
+                background-color: #f7f7f7;
+            } 
+            .ie7 & {
+                position: relative;
+                display:inline;
+                zoom:1
+            }
+        }
+    }
+    > li {
+        border-top: 1px solid #d4d6d8; 
+        > a {
+            background: url('../images/icn_sprite_faq.png') 30px 24px no-repeat; 
+            margin: 0
+        }
+    }
+}
+.sub_item {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border:red
+}
+.sub_item li a {
+    background-color: #f7f7f7;
+    color: #7a8188;
+    padding: 10px 74px 25px 74px;
+}
+.acc_arrow {
+    display: block;
+    background: url('../images/icn_sprite_faq.png') 0 -386px no-repeat;
+    position: absolute;
+    right: 30px;
+    top: 26px;
+    width: 23px;
+    height: 15px;
+    .active & {
+        border: none; 
+        -webkit-transform: rotate(180deg); 
+        -moz-transform: rotate(180deg);    
+        -ms-transform: rotate(180deg);     
+        transform: rotate(180deg);  
+        -webkit-transition: all 0.5s ease-out; 
+        -moz-transition: all 0.5s ease-out; 
+        -ms-transition: all 0.5s ease-out; 
+        -o-transition: all 0.5s ease-out; 
+        transition: all 0.5s ease-out;
+    }
+}        
+// END ACCORDION CSS
+
+
+// CENTERED VARIABLE LIST CSS
+.centered-wrap {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+.centered-outer {
+    position: relative;
+    float: left;
+    left: 50%;
+    text-align: center;
+    ul {
+        float:left;
+        list-style:none;
+        margin:0;
+        padding:0;
+        position:relative;
+        right:50%;
+    }
+}
+// END CENTERED VARIABLE LIST CSS
+
+
+// RESPONSIVE OFF CANVAS NAVIGATION
+/*
+Wrap page in outer and inner wrappers to fix overflow 
+scrolling and to get full height sidebar
+
+<div class="outer-wrap">
+    <div class="inner-wrap">
+        <%= yield %>
+    </div>
+</div> 
+
+// base JS code ready to extend
+$('.mobile-nav-handle').on('click', function(e) {
+    e.preventDefault();
+
+    if($('.inner-wrap').hasClass('open-left')) {
+        $('.inner-wrap').removeClass('open-left');
+    } else {
+        $('.inner-wrap').addClass('open-left');
+    }
+});
+
+*/
+
+// Base CSS
+.outer-wrap {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+.inner-wrap {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    left: 0;
+    @include transition(all 0.3s);
+}
+
+// Place CSS in media query
+.site-navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #333;
+    height: 100%;
+    z-index: 100;
+    width: 80%;
+    // Use 3D transforms to enable hardware acceleration
+    @include translate3d(-100%,0,0);
+    @include backface-visibility(hidden);
+    @include transition(all 0.3s);
+    // Backup scrolling
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    li {
+        float: none;
+    }
+}
+.inner-wrap {
+    &.open-left {
+        @include translate3d(80%,0,0);
+        @include backface-visibility(hidden);
+    }
+}
+// END RESPONSIVE OFF CANVAS NAVIGATION

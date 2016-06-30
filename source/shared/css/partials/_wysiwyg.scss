@@ -1,0 +1,23 @@
+// WYSIWYG
+
+.wysiwyg{
+	// Block elements
+	img, figure, table {
+		margin-bottom: 1em;
+	}
+
+	// Push any heading after a <p> down
+    p, ul, ol, figure, img, table {
+        + h2, + h3, + h4, + h5, + h6 {
+            margin-top: 2em;
+        }
+    }
+
+	// Tables
+	table {
+		border: 1px solid #dddddd;
+		th, td {
+			border-left: 1px solid #dddddd; border-bottom: 1px solid #dddddd; padding: 8px; vertical-align:top;
+		}
+	}
+}

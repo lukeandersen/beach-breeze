@@ -1,0 +1,249 @@
+// Rem Font Sizing ----------------------------------------------------
+// https://github.com/ry5n/rem
+
+// Base font size in pixels, if not already defined.
+// Should be the same as the font-size of the html element.
+$base-font-size: 16px !default;
+$rem-with-px-fallback: true !default;
+
+// @private Number of pixels in 1rem.
+// For px -> rem, divide by this ratio; for the other way, multiply.
+$px-per-rem: $base-font-size / 1rem;
+
+// Return pixel values as rem
+@function px-to-rem($px-value) {
+  @return $px-value / $px-per-rem;
+}
+
+// Return rem values as px
+@function rem-to-px($rem-value) {
+  @return $rem-value * $px-per-rem;
+}
+
+// For the given property, use rem units with px as a fallback value for older
+// browsers.
+//
+// $property - The css property name.
+// $values - The value (or space-separated list of values) for the property.
+// $use-px-fallback - Boolean, default: true; whether to use pixel fallback values
+//
+@mixin rem($property, $values, $use-px-fallback: $rem-with-px-fallback) {
+  // Create a couple of empty lists as output buffers.
+  $px-values: ();
+  $rem-values: ();
+
+  // Ensure $values is a list.
+  @if type-of($values) != "list" {
+    $values: join((), $values);
+  }
+
+  // Loop through the $values list
+  @each $value in $values {
+    // For each property value, if it's in rem or px, derive both rem and
+    // px values for it and add those to the end of the appropriate buffer.
+    @if(type-of($value) == number and not unitless($value) and (unit($value) == px or unit($value) == rem)) {
+      @if unit($value) == px {
+        $px-values: join($px-values, $value);
+        $rem-values: join($rem-values, px-to-rem($value));
+      }
+      @else {
+        $px-values: join($px-values, rem-to-px($value));
+        $rem-values: join($rem-values, $value);
+      }
+    }
+    @else {
+      $px-values: join($px-values, $value);
+      $rem-values: join($rem-values, $value);
+    }
+  }
+
+  // Use pixel fallback for browsers that don't understand rem units.
+  @if $use-px-fallback {
+    #{$property}: $px-values;
+  }
+
+  // Use rem values for everyone else (overrides pixel values).
+  #{$property}: $rem-values;
+}
+
+// Em Font Sizing -----------------------------------------------------
+
+// USAGE: - padding: em(10px);
+@function em($target, $context: $base-font-size){
+  @if $target == 0 { @return 0 };
+  @return $target / $context + 0em;
+}
+
+// PERCENTAGE CALCULATION
+// USAGE - width: perc(192, 960); 
+
+@function perc($target, $context){
+  @return (($target/$context)*100%);
+}
+
+
+//SPRITES
+
+// NO MIXIN REQUIRED FOR DEFAULT COMPASS SPRITES
+// css usage like this:- 
+// .sprite{
+//    @include assets-sprite(icn-search,false,20px,20px); //image-name, get sprite dimensions, offset-x, offset-y(relative to auto generated bg pos)
+//  }
+
+
+// SPRITE WITH MIXIN AND DEFAULT VALUES SET HERE
+// css usage like this:- 
+// .sprite{
+//     @include ico('search');
+//  }
+
+// @mixin ico($spriteName) {
+//   @include assets-sprite($spriteName);
+//   position: absolute;
+//   display: block;
+//   border:none;
+//   text-indent:-999em;
+// }
+
+
+// Type mixins
+
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal ) {
+  @font-face {
+      font-family: $font-family;
+      src: url('#{$file-path}.eot');
+      src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
+           url('#{$file-path}.woff') format('woff'),
+           url('#{$file-path}.ttf') format('truetype'),
+           url('#{$file-path}.svg##{$font-family}') format('svg');
+      font-weight: $weight;
+      font-style: $style;
+  }
+}
+
+// chrome font rendering issue fix
+  
+// @media screen and (-webkit-min-device-pixel-ratio:0) {
+//     @font-face {
+//         font-family: 'CardoRegular';
+//         src: url('../fonts/Cardo104s-webfont.svg#CardoRegular') format('svg');
+
+//     }
+// }
+
+// Acivate custom font:
+// @include font-face("entypo", "/shared/css/font/my-custom-webfont");
+// font-family:"FontName"; or define fontstack above eg: $FontName
+
+
+@mixin all-link-psuedos($col) {
+  &:link     { color: darken($col, 10%); }
+  &:visited  { color: darken($col, 20%); }
+  &:hover    { color: darken($col, 30%); }
+  &:active   { color: darken($col, 40%); }
+}
+ 
+// example of use
+// $linkColor: red;
+// a {
+//   color: $linkColor;
+//   @include all-link-psuedos($linkColor);
+// }
+
+
+// Placeholder styles
+@mixin placeholder($color) {
+  &.placeholder {
+    color: $color; 
+  }
+  &:-moz-placeholder {
+    color: $color; 
+  }
+  &::-moz-placeholder {
+    color: $color; 
+  }
+  &::-webkit-input-placeholder {
+    color: $color; 
+  } 
+  &:-ms-input-placeholder {
+    color: $color; 
+  }
+}
+
+
+// Responsive mixins
+// USAGE: 
+// Simple @include breakpoint(small) {}
+// Custom @include breakpoint(60em, max-width) {}
+$media-queries: true !default;
+@mixin breakpoint($point, $minMax: min-width, $ie: true) {
+  @if $media-queries {
+    @if $point == small {
+      @media ($minMax: $small)  { @content; }
+    }
+    @else if $point == medium {
+      @media ($minMax: $medium) { @content; }
+    }
+    @else if $point == large {
+      @media ($minMax: $large) { @content; }
+    }
+    @else if $point == x-large {
+      @media ($minMax: $x-large) { @content; }
+    }
+    @else if $point { // allows custom breakpoints
+      @media ($minMax: $point) { @content; }
+    }
+  }
+  // Only display min-width items to IE style sheet
+  @else if $minMax != max-width {
+    @content;
+  }
+}
+
+/*! HiDPI v2.0.1 | MIT License | git.io/hidpi */
+
+// Force HiDPI graphics on regular displays
+$hidpi-debug: false !default;
+
+// Change default filename postfix
+// default: imagename_2x.png
+$hidpi-postfix: '_x2' !default;
+
+// Default pixel ratio: 1.3 to support Nexus 7
+// Depending on your target, you may want to set a
+// more suitable minimum pixel ratio here:
+// http://bjango.com/articles/min-device-pixel-ratio/
+$hidpi-min-pixel-ratio: 1.3 !default;
+
+@mixin hidpi-abstract($image, $extension, $postfix: $hidpi-postfix) {
+  $image-fullname: '#{$image}.#{$extension}';
+  $image-hidpi-fullname: '#{$image}#{$postfix}.#{$extension}';
+
+  background-image: image-url($image-hidpi-fullname);
+  background-size: image-width($image-fullname) image-height($image-fullname);
+}
+
+@mixin hidpi($image: false, $extension: png, $postfix: $hidpi-postfix) {
+  @if $hidpi-debug {
+    @if $image {
+      @include hidpi-abstract($image, $extension, $postfix);
+    } @else {
+      @content;
+    }
+  } @else {
+    @if $image {
+      background-image: image-url('#{$image}.#{$extension}');
+    }
+    // Inspired by:
+    // http://www.brettjankord.com/2012/11/28/cross-browser-retinahigh-resolution-media-queries/
+    @media (-webkit-min-device-pixel-ratio: $hidpi-min-pixel-ratio),
+           (min-resolution: $hidpi-min-pixel-ratio * 96dpi),
+           (min-resolution: $hidpi-min-pixel-ratio * 1dppx) {
+      @if $image {
+        @include hidpi-abstract($image, $extension, $postfix);
+      } @else {
+        @content;
+      }
+    }
+  }
+}

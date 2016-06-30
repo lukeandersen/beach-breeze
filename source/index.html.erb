@@ -1,0 +1,19 @@
+<% content_for :head do %>
+<title>Index</title>
+<% end%>
+
+<% content_for :pageClasses do %><% end %>
+
+<div class="site-main">
+    <div class="row inner">
+		<ul class="template-list wysiwyg">
+		   <% sitemap.resources.each do |page| %>
+		       <% if page.url =~ /\.html/ %>
+		           <li><a href="<%= "#{page.url}" %>"><%= "#{page.url}" %></a></li>
+		       <% end %>
+		   <% end %>
+		</ul>
+	</div>
+</div>
+
+<% content_for :javascripts do %><% end%>

@@ -1,0 +1,162 @@
+<% content_for :head do %>
+<title>Index</title>
+<% end%>
+
+<% content_for :pageClasses do %><% end %>
+
+<aside class="sub-nav">
+	<div class="row">
+		<a class="sub-nav-header">In this section <i class="icon-font right">f</i></a>
+		<ul style="">
+			<li><a href="#" class="active">labore ipsam</a></li>
+			<li><a href="#">qui similique</a></li>
+			<li><a href="#">explicabo officia</a></li>
+			<li><a href="#">laboriosam rerum</a></li>
+			<li><a href="#">cumque dolores</a></li>
+		</ul>
+	</div>
+</aside>
+
+<div class="site-main">
+    <div class="row">
+		<div class="primary medium-8 columns inner">
+			<div class="wysiwyg">
+				<h1>H1 Lorem ipsum dolor sit amet</h1>
+				<h2>H2 Lorem ipsum dolor sit amet</h2>
+				<h3>H3 Lorem ipsum dolor sit amet</h3>
+				<h4>H4 Lorem ipsum dolor sit amet</h4>
+				<h5>H5 Lorem ipsum dolor sit amet</h5>
+				<h6>H6 Lorem ipsum dolor sit amet</h6>
+				<p><i class="icon-calendar"></i> Posted on 12/10/2014</p>
+				<p>Lorem ipsum dolor sit amet, <b>this is some bolded text</b> consectetur adipiscing elit. Cras vitae dolor blandit lorem hibant <i>this is some italic text</i> mauris dictum posuere eget eu mi <a href="#">this is a text link</a>. Maecenas turpis sem, ullamcorper vel tristique a. Maecenas dictum justo eget augue feugiat fringilla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+				<blockquote>Fancy a blockquote, Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. - <em>John Smith</em></blockquote>
+				<small>Maecenas dictum justo eget augue feugiat fringilla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas dictum justo eget augue feugiat fringilla.</small>
+				<p class="small"><%= lorem.sentences 4 %></p>
+				<img src="<%= lorem.image('900x500', :text => 'image') %>" alt="">
+				<div class="media-caption"><%= lorem.sentences 2 %> <a href="#"><%= lorem.words 2 %></a></div>
+				<p><%= lorem.paragraphs 1 %></p>
+				
+				<h3>Video</h3>
+				<iframe src="//player.vimeo.com/video/2902530?byline=0&amp;portrait=0&amp;color=91b952" width="900" height="507" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				
+				<h3>Lists</h3>
+				<ul>
+					<% 2.times do |num| %> 
+					<li><%= lorem.sentences 2 %></li>
+					<% end %>
+				</ul>
+				<ol>
+					<% 2.times do |num| %> 
+					<li><%= lorem.sentences 2 %></li>
+					<% end %>
+				</ol>
+				
+				<h3>Table</h3>
+				<table>
+					<tbody>
+						<tr>
+							<td>Row title</td> 
+							<td>Row title</td>
+						</tr>
+						<% 3.times do |num| %>
+						<tr>
+							<td><%= lorem.words 4 %></td>
+							<td><%= lorem.sentences 2 %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+
+				<h3>Forms</h3>
+				<form class="form" method="post" action="/">
+					<div class="form-group">
+						<div class="medium-8">
+							<label for="contact-name"><strong>Name</strong> (required)</label>
+							<input type="text" required="" id="contact-name" value="" name="name">
+							<p class="error"><b>Error</b> - Please enter your name</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="medium-8">
+							<label for="contact-email"><strong>Email</strong> (required)</label>
+							<input type="email" required="" id="contact-email" value="" name="email">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="medium-8">
+							<label for=""><strong>Select</strong> (required)</label>
+							<select name="" id="">
+								<option value="">Lorem ipsum</option>
+								<option value="">Lorem ipsum</option>
+								<option value="">Lorem ipsum</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="medium-8">
+							<label for="contact-subject"><strong>Subject</strong></label>
+							<input type="text" id="contact-subject" value="" name="subject">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="medium-9">
+							<label for="contact-message"><strong>Your Message</strong> (required)</label>
+							<textarea required="" rows="10" id="contact-message" name="message"></textarea>
+						</div>
+					</div>
+					<div class="form-group checkbox">
+						<label>
+							<input type="checkbox"> All sounds good?
+						</label>
+					</div>
+					<input type="submit" value="Submit" id="contact-submit" class="btn">
+					<p id="mail-fail" class="error"><b>Error</b> - Oops, looks like something went wrong.</p>
+					<p id="mail-success" class="success"><b>Success</b> - Thanks for contacting us</p>
+				</form>
+
+				<h3>Loading</h3>
+				<h2>
+					<div class="loader">
+						<i class="icon-dribbble spinning"></i> 
+					</div>
+					<p>&nbsp;</p>
+				</h2>
+
+				<h3>Tabs</h3>
+				<ul class="tab-nav">
+					<li class="active"><a href="#tab-1">Tab 1</a></li>
+					<li><a href="#tab-2">Tab 2</a></li>
+				</ul>
+				<div id="tab-1" class="tab-content">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae dolor blandit mauris dictum posuere eget eu mi. Maecenas turpis sem, ullamcorper vel tristique a, sodales varius nulla. Maecenas dictum justo eget augue feugiat fringilla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p>
+				</div>
+				<div id="tab-2" class="tab-content">
+					<p>Ullamcorper vel tristique a, sodales varius nulla. Maecenas dictum justo eget augue feugiat fringilla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p>
+				</div>
+				<p>&nbsp;</p>
+
+				<h3>Toggle</h3>
+				<div class="toggle">
+					<h4 class="toggle-handle"><span class="icon" data-icon="f"></span> Show more content</h4>
+					<p class="toggle-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae dolor blandit mauris dictum posuere eget eu mi. Maecenas turpis sem, ullamcorper vel tristique a, sodales varius nulla. Maecenas dictum justo eget augue feugiat fringilla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p>
+					<h4 class="toggle-handle"><span class="icon" data-icon="f"></span> And some more</h4>
+					<p class="toggle-content">Augue feugiat fringilla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p>
+					<h4 class="toggle-handle"><span class="icon" data-icon="f"></span> Show more content</h4>
+					<p class="toggle-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae dolor blandit mauris dictum posuere eget eu mi. Maecenas turpis sem, ullamcorper vel tristique a, sodales varius nulla. Maecenas dictum justo eget augue feugiat fringilla. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p>
+				</div>
+
+			</div>
+		</div>
+
+		<aside class="sidebar medium-4 columns" role="complementary">
+			<% 2.times do |num| %> 
+			<%= partial "partials/widget-links" %>
+			<% end %>
+			<div class="panel">
+				<img src="<%= lorem.image('400x220', :text => 'promo') %>" alt="">
+			</div>
+		</aside>
+	</div>
+</div>
+
+<% content_for :javascripts do %><% end%>

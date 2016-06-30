@@ -1,0 +1,101 @@
+.mobile-navigation-handle {
+    float: right;
+    color: #545454; 
+    padding: 8px 16px;
+    font-size: 2em;
+    @include breakpoint(medium) {
+        display: none;
+    }
+}
+.site-navigation {
+    @extend %clearfix;
+    @include breakpoint(medium) {
+        float: right;
+    }
+    ul {
+        margin: 0; 
+        padding: 0;
+        display: none;
+        @include breakpoint(medium) {
+            display: block;
+        }
+    }
+    li {
+        padding: 0; 
+        float: left; 
+        position: relative; 
+        list-style:none;
+        width: 100%;
+        @include breakpoint(medium) {
+            width: auto;
+        }
+        // Dropdown
+        > ul {
+            display: none; 
+            z-index: 100;
+        }
+        &:hover > ul, &.hover > ul { 
+            background:#dbdbdb;
+            @include breakpoint(medium) {
+                display: block; 
+                position: absolute; 
+                top:100%; 
+                left:0; 
+                width:200px;
+            }
+        }
+        li {
+            width:100%;
+            // Dropdown Second level
+            &:hover, &.hover {
+                > ul {
+                    top:0; 
+                    left:100%;
+                }
+                > a {
+                    border-bottom: 1px solid transparent; 
+                    background-color: #d1d1d1;   
+                }
+            }
+        }
+        // Active and hover
+        &:hover > a, &.hover > a, &.active a {
+            background:#dbdbdb; 
+            border-bottom: 1px solid transparent;
+        }
+    }
+    a {
+        text-decoration:none; 
+        color: #545454; 
+        padding: 20px 20px; 
+        display: block; 
+        border-bottom: 1px solid transparent; 
+        font-family: 'open sans', sans-serif;
+        font-weight: bold;
+        @include transition(all 0.2s linear);
+        @include breakpoint(large) {
+            padding: 20px 24px;
+        }
+    }
+} 
+
+// Sub nav
+.sub-nav {
+    background: darken($lt-gray, 5%);
+    ul {
+        @extend %clear-list;
+        display: none;
+        a {
+            background: darken($lt-gray, 8%);
+        }
+    }
+    a {
+        display: block;
+        text-decoration: none;
+        padding: 0.5em 1.5em;
+        font-weight: bold;
+    }
+    @include breakpoint(medium) {
+        display: none;
+    }
+}

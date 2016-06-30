@@ -1,0 +1,128 @@
+// Forms
+.form-group { 
+	@extend %clearfix;
+	margin: 0 0 1em;
+}
+
+fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+legend {
+	margin-bottom: 1em;
+}
+label, .label { 
+	@include box-sizing(border-box);
+}
+input, select, textarea { 
+	border: 0;
+	padding:0;
+	outline: 0;
+	width:100%;
+	display: block;
+	background-color: transparent;
+	margin-top: 5px;
+	border-radius: 0;
+	color:white;
+	@include transition(all 0.2s linear);
+	@include box-sizing(border-box);
+	@include placeholder(white);
+	&:focus {
+		border-bottom: 1px solid white;
+	}
+}
+select {
+	background: darken($lt-gray, 4%);
+}
+textarea {
+	height:auto;
+	min-height:50px;
+}
+textarea, input[type="text"], input[type="search"], input[type="password"] {
+	-webkit-appearance: none;
+}
+input[type="checkbox"], input[type="radio"] {
+	width: auto;
+	border: 1px solid darken($lt-gray, 20%);
+	margin: 4px 0 0;
+    line-height: normal;
+	@include breakpoint(large) {
+	    border: none;
+	}
+}
+.input-small {
+	max-width: 150px;
+	@include breakpoint(medium) {
+		width: 66%;   
+	}
+}
+.input-medium {
+	max-width: 300px; 
+	@include breakpoint(medium) {
+		width: 66%;  
+	}
+}
+.input-large {
+	max-width: 500px; 
+	@include breakpoint(medium) {
+		width: 66%;  
+	}
+}
+.checkbox, .radio {
+    min-height: 20px;
+    padding-left: 20px;
+    input {
+        float: left;
+        margin-left: -20px;
+    }
+}
+
+// Alerts and warnings
+.error {
+	color: #F6653C!important;
+}
+.success {
+	color: #27CCC0!important;
+}
+
+// Buttons
+.btn, input[type="submit"], button {
+	border:0 none;
+	background-color: $link-color;
+	color: white;
+	line-height: 1;
+	display: inline-block;
+	text-decoration: none;
+	text-align: center;
+	width:auto;
+	@include rem(padding, 16px 32px);
+	@include rem(font-size, 14px);
+	@include transition(all 0.2s linear);
+	&:hover, &:focus {
+		background-color: $link-hover-color;
+	}
+	@include breakpoint(medium) {
+	    display: inline-block;
+	}
+	+.btn {
+		margin-top: 5px;
+		@include breakpoint(medium) {
+			margin-left: 1em;
+		}
+	}
+	&.btn-sml {
+		padding: 0.8em 1.5em;
+	}
+	&.btn-accompanied {
+		margin-right: 1em;
+		margin-bottom: 1em;
+	}
+	&.expand {
+		padding-right: 0;
+		padding-left: 0;
+		width: 100%;
+	}
+}
+
+

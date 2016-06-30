@@ -1,0 +1,40 @@
+<% content_for :head do %>
+<title>Index</title>
+<% end%>
+
+<% content_for :pageClasses do %><% end %>
+
+<div class="site-main">
+
+	<div class="location">
+		
+		<div class="location-image" style="background-image:url(shared/images/bondi.jpg);"></div>
+		
+		<div class="current-location">
+			<p class="h5 no-marg"><i class="icon-map-marker"></i> Current loctaion</p>
+			<input type="text" class="current-location-input" value="" placeholder="Enter your current location">
+		</div>
+		
+		<div class="location-result">
+			<span class="location-temp h1"><i class="icon-sun4"></i>32&deg;</span>
+			<h1 class="no-marg">Bondi Beach</h1>
+			<p class="no-marg">Best location is South bondi beach</p>
+			<span class="location-temp h4"><i class="icon-location-arrow"></i> N/NE &nbsp;-&nbsp; 3ft &nbsp;-&nbsp; <i class="icon-thermometer"></i>22&deg;</span>
+		</div>
+
+	</div>
+
+	<ul class="more-locations">
+		<% 5.times do |num| %>
+		<li>
+			<a href="#">
+				<span class="location-temp h2"><i class="icon-sun2"></i>30&deg;</span>
+				<span class="location-title">Bronte</span>
+			</a>
+		</li>
+		<% end %>
+	</ul>
+
+</div>
+
+<% content_for :javascripts do %><% end%>

@@ -1,0 +1,306 @@
+@charset "utf-8";
+@import "compass";
+@import "compass/css3"; 
+@import "partials/normalize.scss";
+@import "partials/mixins.scss";
+@import "partials/type.scss";
+
+
+// AUTO SPRITES
+// add dimensions of image dynamically CSS
+$assets-sprite-dimensions: true;
+//add spacing to all sprites
+$assets-spacing: 20px; 
+@import "sprites/assets/*.png";
+@include all-assets-sprites;
+
+// Site vairables
+
+// breakpoints
+$small: 33.75em; //540px
+$medium: 48em; //768px
+$large: 62em; //992px
+$x-large: 78em; //1248px
+ 
+// links
+$link-color: #777;
+$link-hover-color: darken($link-color, 15%);
+
+// text colours
+$main: #2E3639;
+$lt-gray: #f3f3f3;
+$blue: #2AC4EA;
+
+
+@import "partials/placeholders.scss";
+@import "partials/wysiwyg.scss";
+
+
+/* REACTIVE - BASE STYLES
+ -----------------------------------------------------------------------------------------------------------*/
+em, i{font-style:italic;}strong, b{font-weight:bold;}
+a, input[type=button], input[type=submit], button { cursor:pointer }
+input {border: 0;}
+img, object, embed {max-width:100%;}
+object,embed{height:100%;}
+img{-ms-interpolation-mode:bicubic;display:inline-block;vertical-align:middle;}
+
+//-----------------------------------
+// Add your own custom styles below
+//-----------------------------------
+
+/* STRUCTURE
+ -----------------------------------------------------------------------------------------------------------*/
+ *, *:before, *:after {-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+html, body{ font-size: 100%; -webkit-font-smoothing: antialiased; }
+body {  
+    color:$main; 
+    font-family: 'open sans', $helvetica;
+    line-height:1.45;
+}
+.row {
+    max-width:$x-large;
+}
+
+a {
+    color: $link-color;
+    &:hover, &:focus {
+        color: $link-hover-color;
+    }
+}
+
+.site {}
+.site-header {
+    background: $lt-gray;
+    padding: 1em 0;
+}
+
+@import "partials/nav.scss";
+
+.hero {
+    margin-bottom: 2em;
+    color: white;
+}
+.site-main {
+    // margin-top: 1em;
+    position: relative;
+}
+
+.location {
+    @extend %clearfix;
+    overflow: hidden;
+    position: relative;
+    color: white;
+}
+.location-image {
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:100%;
+    &:after {
+        content:"";
+        position: absolute;
+        top: 0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background: -webkit-radial-gradient(circle, transparent, rgba(black, 0.2));
+    }
+}
+.current-location {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    text-shadow: 0 0 5px rgba(black, 0.25);
+    .current-location-input {
+        @extend .h3;
+        letter-spacing: -1px;
+        text-shadow: 0 0 5px rgba(black, 0.25);
+    }
+}
+.location-result {
+    position: absolute;
+    top:30%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    text-shadow: 0 0 30px rgba(black, 0.5);
+}
+.more-locations {
+    @extend %clear-list;
+    @include breakpoint(large) {
+        position: absolute;
+        bottom:0;
+        left: 0;
+        width: 100%;
+        height: auto;
+    }
+    li {
+        border: 1px solid #e3e3e3;
+        @include breakpoint(large) {
+            float: left;
+            width: 20%;
+            text-align: center;
+            border-color: transparent;   
+        }
+    }
+    a {
+        @extend %clearfix;
+        padding: 1em;
+        display: block;
+        background: rgba(white, 0.75);
+        color: $main;
+        text-decoration: none;
+        @include transition(all 0.7s linear);
+        &:hover, &:focus {
+            background: #04ceec;
+            text-shadow: 0 1px 1px rgba(white, 0.25);
+        }
+        @include breakpoint(large) {
+            padding: 3em 2em;
+        }
+    }
+}
+.location-temp {
+    float: right;
+    margin: 0;
+    @include breakpoint(large) {
+        float: none;
+        display: block;
+    }
+}
+.location-title {
+    @extend .h3;
+    float: left;
+    margin: 0;
+    @include breakpoint(large) {
+        float: none;
+        display: block;
+        text-transform: uppercase;
+    }
+}
+
+
+.inner {
+    padding:2em 0.5em;
+}
+.sidebar {
+    margin-top: 2em;
+}
+.site-footer {
+    background: $lt-gray;
+    padding:2em 0 0;
+}
+.site-footer-cols {
+    margin-bottom:1em;
+}
+.social {
+    @include rem(font-size, 28px);
+    margin-top: 10px;
+    a {
+        text-decoration: none;
+        @include rem(margin-right, 5px);
+    }
+}
+
+.media-img {
+    margin-bottom: 1em;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    background:$lt-gray;
+    // img {
+    //     @include transition(all .4s ease-out);
+    // }
+    &:hover, &:focus {
+        // img {
+        //     @include scale(3);
+        //     @include rotate(360deg);
+        // }
+        .media-overlay {
+            opacity: 1; 
+        }
+        .media-overlay-inner {
+            margin-top: 100px;
+            opacity: 1;
+        }
+    }
+}
+.media-overlay {
+    opacity: 0;
+    position: absolute;
+    top:0; right:0; bottom:0; left:0;
+    background: rgba($main, 0.7);
+    color: white;
+    text-align: center;
+    @include transition(all .3s linear);
+}
+.media-overlay-inner {
+    margin-top: 80px;
+    opacity: 0;
+    @include transition(all .4s ease-out);
+}
+
+// Widgets 
+.widget {
+    ul {
+        @extend %clear-list;
+    }
+}
+.widget-tweets {
+    iframe {
+        width: 100%;
+    }
+}
+.widget-news {
+    article {
+        border-bottom:1px solid #e3e3e3;
+        margin-bottom: 1em;
+    }
+}
+.widget-links {
+
+}
+
+// Loader
+.loader {
+    position: relative;
+}
+.spinning {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 29px;
+    height: 40px;
+    margin:-20px 0 0 0;
+    -webkit-transform-origin: center;
+    -webkit-animation:spin 1.5s linear infinite;
+    -moz-animation:spin 1.5s linear infinite;
+    animation:spin 1.5s linear infinite;
+}
+@-webkit-keyframes spin { 
+    100% { -webkit-transform: rotate(360deg); } 
+}
+@-moz-keyframes spin { 
+    100% { -moz-transform: rotate(360deg); } 
+}
+@keyframes spin { 
+    100% { transform:rotate(360deg); } 
+}
+
+/* Sprite demo */
+.sprite{
+    @include assets-sprite(search,false,20px,20px); //image-name, get sprite dimensions, offset-x, offset-y(relative to auto generated bg pos)
+}
+
+/* MAIN STYLES HERE 
+------------------------------------------------------------------------------------------------------------*/
+@import "partials/forms-buttons.scss";
+@import "partials/plugins.scss";
+@import "partials/helpers.scss";
+@import "partials/grid.scss";
+@import "partials/print.scss";

@@ -1,0 +1,59 @@
+// Plugins
+/* FlexSlider Necessary Styles */ 
+.flex-container a:active,
+.flexslider a:active,
+.flex-container a:focus, .flexslider a:focus  {outline: none;}
+.slides, .flex-control-nav, .flex-direction-nav {margin: 0; padding: 0; list-style: none;} 
+.flexslider {margin: 0; padding: 0;}
+.flexslider .slides > li {display: none; -webkit-backface-visibility: hidden; position: relative;} /* Hide the slides before the JS is loaded. Avoids image jumping */
+.flexslider .slides img {width: 100%; display: block;}
+.flex-pauseplay span {text-transform: capitalize;}
+.slides:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;} 
+html[xmlns] .slides {display: block;} 
+* html .slides {height: 1%;}
+.no-js .slides > li:first-child {display: block;}
+
+/* FlexSlider Theme */
+.flexslider {margin: 2em 0; position: relative; zoom: 1;}
+.flexslider.hero { margin-bottom: 60px;}
+.flex-viewport {max-height: 2000px; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; transition: all 1s ease;}
+.loading .flex-viewport {max-height: 300px;}
+.flexslider .slides {zoom: 1;}
+
+.slide-caption { position: absolute; bottom:20px; left: 20px; height: auto; width: calc(100% - 40px); /*background: #fff; background: rgba(white,0.5);*/ padding: 1em;
+-webkit-transition: all 1s ease; -moz-transition: all 1s ease; transition: all 1s ease;    
+}
+
+.carousel li {margin-right: 5px}
+
+/* Direction Nav */
+.flex-direction-nav {*height: 0;}
+.flex-direction-nav a { font-family: 'icons'; font-size: 35px; color: #fff; line-height: 2.3; text-decoration: none; text-align: center; width: 80px; height: 80px; display: block; background: $link-color; position: absolute; margin-top: -40px; top:50%; opacity: 0.6; z-index: 10; cursor: pointer; transition: all .3s ease;}
+.flex-direction-nav .flex-next {right: 0;}
+.flex-direction-nav .flex-prev {left: 0;}
+.flexslider:hover .flex-next {opacity: 0.8;}
+.flexslider:hover .flex-prev {opacity: 0.8;}
+.flexslider:hover .flex-next:hover, .flexslider:hover .flex-prev:hover {opacity: 1;}
+.flex-direction-nav .flex-disabled {opacity: .3!important; cursor: default;}
+.widget .flexslider .flex-control-nav { display: none;}
+.widget .flexslider a { padding: 0;}
+
+/* Control Nav */
+.flex-control-nav {width: 100%; position: absolute; bottom: -40px; text-align: center; height:20px;}
+.flex-control-nav li {margin: 0 6px; display: inline-block; zoom: 1; *display: inline;}
+.flex-control-paging li a {width: 70px; height: 6px; display: block; background: #666; background: rgba(0,0,0,0.5); cursor: pointer; text-indent: -9999px;}
+.flex-control-paging li a:hover { background: #333; background: rgba(0,0,0,0.7); }
+.flex-control-paging li a.flex-active { background: #000; background: rgba(0,0,0,0.9); cursor: default; }
+
+
+/* Tabs */
+.tab-nav { margin:0; padding:0; list-style: none; overflow: hidden;}
+.tab-nav li {float: left; background: darken($lt-gray, 10%);}
+.tab-nav .active {background: $lt-gray}
+.tab-nav a { display: block; padding: 1em; text-decoration: none;}
+.tab-content { background: $lt-gray; padding: 1em;}
+
+/* Toggle */
+.toggle-handle { cursor: pointer;}
+.toggle-content {margin-left: 30px;}
+.ie7 .toggle-content {margin-left: 0;}
